@@ -7,8 +7,15 @@ Django REST API backend for dynamic portfolio content management.
 
 ## 🔗 Related Projects
 
-- **Frontend**: [Portfolio](https://github.com/DryZn/portfolio) - Next.js 14 with modern UI
-- **Chatbot**: [AI Assistant Portfolio](https://github.com/DryZn/AI_Assistant_Portfolio) - FastAPI RAG with LangChain
+This Django backend is part of a complete portfolio ecosystem:
+
+| Repository | Technology | Purpose | URL |
+|------------|------------|---------|-----|
+| [portfolio](https://github.com/DryZn/portfolio) | Next.js 14 | Frontend UI | https://portfolio-anthony-lesenfans.vercel.app |
+| [AI_Assistant_Portfolio](https://github.com/DryZn/AI_Assistant_Portfolio) | FastAPI + LangChain | RAG Chatbot | https://ai-assistant-portfolio-eka7.onrender.com |
+| **Portfolio_Backend_Django** | Django + DRF | CMS & API | (This repo) |
+
+**Each service is independent and can be deployed separately.**
 
 ## 🚀 Technologies
 
@@ -81,16 +88,30 @@ Access:
 
 ## 🐳 Docker
 
+### This Service Only (Django + PostgreSQL)
+
 ```bash
-# With Docker Compose (PostgreSQL included)
+# Start Django with PostgreSQL
 docker-compose up -d
+
+# Run migrations
+docker-compose exec web python manage.py migrate
 
 # Create superuser
 docker-compose exec web python manage.py createsuperuser
 
-# Build only
+# View logs
+docker-compose logs -f web
+
+# Stop
+docker-compose down
+```
+
+### Standalone Docker Build
+
+```bash
 docker build -t portfolio-django .
-docker run -p 8000:8000 -e SECRET_KEY=your-key portfolio-django
+docker run -p 8000:8000 -e SECRET_KEY=your-key -e DEBUG=True portfolio-django
 ```
 
 ## ⚙️ Configuration
@@ -104,6 +125,47 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 DATABASE_URL=postgresql://user:pass@localhost:5432/portfolio_db
 CORS_ALLOWED_ORIGINS=http://localhost:3000
 ```
+
+## 🌐 Full-Stack Development
+
+To run the complete portfolio ecosystem locally:
+
+```bash
+# Terminal 1 - Frontend (Next.js)
+cd portfolio
+npm install
+npm run dev
+# → http://localhost:3000
+
+# Terminal 2 - Chatbot API (FastAPI)
+cd AI_Assistant_Portfolio
+pip install -r requirements.txt
+uvicorn src.main:app --reload --port 8000
+# → http://localhost:8000
+
+# Terminal 3 - Backend API (Django)
+cd Portfolio_Backend_Django
+pip install -r requirements.txt
+python manage.py runserver 8001
+# → http://localhost:8001
+```
+
+**Architecture:**
+```
+┌─────────────────┐
+│  Next.js :3000  │  Frontend (Public)
+└────────┬────────┘
+         │
+    ┌────┴────┐
+    ↓         ↓
+┌─────────┐ ┌──────────┐
+│FastAPI  │ │ Django   │
+│:8000    │ │ :8001    │
+│Chatbot  │ │ CMS/API  │
+└─────────┘ └──────────┘
+```
+
+**Note:** Each service is in a separate repository and can be deployed independently.
 
 ## 📁 Structure
 
