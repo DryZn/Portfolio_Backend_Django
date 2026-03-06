@@ -35,3 +35,9 @@ Thumbs.db
 .coverage.*
 htmlcov/
 *.cover
+
+# Pytest
+.pytest_cache/
+
+# Migrations (keep __init__.py only)
+**/migrations/[0-9]*.py
