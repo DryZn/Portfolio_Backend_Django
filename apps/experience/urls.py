@@ -3,8 +3,8 @@ from rest_framework.routers import DefaultRouter
 from .views import ExperienceViewSet
 
 router = DefaultRouter()
-router.register(r'experience', ExperienceViewSet)
+router.register(r"experience", ExperienceViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
 ]

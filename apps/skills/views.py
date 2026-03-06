@@ -8,5 +8,5 @@ class SkillViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['category', 'level']
-    search_fields = ['name']
+    filterset_fields = ["category", "level"]
+    search_fields = ["name"]

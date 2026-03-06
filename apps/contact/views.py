@@ -9,5 +9,8 @@ class ContactMessageViewSet(viewsets.ViewSet):
         serializer = ContactMessageSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Message envoyé avec succès'}, status=status.HTTP_201_CREATED)
+            return Response(
+                {"message": "Message envoyé avec succès"},
+                status=status.HTTP_201_CREATED,
+            )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

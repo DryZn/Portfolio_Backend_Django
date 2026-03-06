@@ -11,12 +11,12 @@ class Experience(models.Model):
     description = models.TextField(verbose_name="Description")
     achievements = models.JSONField(default=list, verbose_name="Réalisations")
     technologies = models.JSONField(default=list, verbose_name="Technologies")
-    logo = models.ImageField(upload_to='experience/', blank=True, verbose_name="Logo")
+    logo = models.ImageField(upload_to="experience/", blank=True, verbose_name="Logo")
     order = models.IntegerField(default=0, verbose_name="Ordre")
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-start_date', 'order']
+        ordering = ["-start_date", "order"]
         verbose_name = "Expérience"
         verbose_name_plural = "Expériences"
 

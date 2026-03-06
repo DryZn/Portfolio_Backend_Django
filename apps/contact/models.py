@@ -11,7 +11,7 @@ class ContactMessage(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
         verbose_name = "Message de contact"
         verbose_name_plural = "Messages de contact"
 

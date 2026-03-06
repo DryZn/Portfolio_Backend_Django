@@ -29,26 +29,32 @@ class Tag(models.Model):
 
 class Post(models.Model):
     STATUS_CHOICES = [
-        ('draft', 'Brouillon'),
-        ('published', 'Publié'),
+        ("draft", "Brouillon"),
+        ("published", "Publié"),
     ]
 
     title = models.CharField(max_length=200, verbose_name="Titre")
     slug = models.SlugField(unique=True)
     excerpt = models.TextField(verbose_name="Extrait")
     content = models.TextField(verbose_name="Contenu")
-    cover_image = models.ImageField(upload_to='blog/', blank=True, verbose_name="Image de couverture")
+    cover_image = models.ImageField(
+        upload_to="blog/", blank=True, verbose_name="Image de couverture"
+    )
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Auteur")
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, verbose_name="Catégorie")
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True, verbose_name="Catégorie"
+    )
     tags = models.ManyToManyField(Tag, blank=True, verbose_name="Tags")
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="draft")
     views = models.IntegerField(default=0, verbose_name="Vues")
-    published_at = models.DateTimeField(null=True, blank=True, verbose_name="Date de publication")
+    published_at = models.DateTimeField(
+        null=True, blank=True, verbose_name="Date de publication"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-published_at', '-created_at']
+        ordering = ["-published_at", "-created_at"]
         verbose_name = "Article"
         verbose_name_plural = "Articles"
 
