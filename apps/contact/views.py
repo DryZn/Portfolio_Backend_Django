@@ -1,6 +1,5 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from .models import ContactMessage
 from .serializers import ContactMessageSerializer
 
 
