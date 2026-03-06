@@ -3,34 +3,34 @@ from django.db import models
 
 class Skill(models.Model):
     CATEGORY_CHOICES = [
-        ("language", "Langage"),
+        ("language", "Language"),
         ("framework", "Framework"),
-        ("tool", "Outil"),
-        ("database", "Base de données"),
+        ("tool", "Tool"),
+        ("database", "Database"),
         ("cloud", "Cloud"),
     ]
 
     LEVEL_CHOICES = [
-        ("beginner", "Débutant"),
-        ("intermediate", "Intermédiaire"),
-        ("advanced", "Avancé"),
+        ("beginner", "Beginner"),
+        ("intermediate", "Intermediate"),
+        ("advanced", "Advanced"),
         ("expert", "Expert"),
     ]
 
-    name = models.CharField(max_length=100, verbose_name="Nom")
+    name = models.CharField(max_length=100, verbose_name="Name")
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
     years_experience = models.IntegerField(
-        default=0, verbose_name="Années d'expérience"
+        default=0, verbose_name="Years of Experience"
     )
-    icon = models.CharField(max_length=100, blank=True, verbose_name="Icône")
-    order = models.IntegerField(default=0, verbose_name="Ordre")
+    icon = models.CharField(max_length=100, blank=True, verbose_name="Icon")
+    order = models.IntegerField(default=0, verbose_name="Order")
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["order", "name"]
-        verbose_name = "Compétence"
-        verbose_name_plural = "Compétences"
+        verbose_name = "Skill"
+        verbose_name_plural = "Skills"
 
     def __str__(self):
         return f"{self.name} ({self.get_level_display()})"

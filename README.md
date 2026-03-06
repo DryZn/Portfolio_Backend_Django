@@ -3,78 +3,78 @@
 [![CI/CD Pipeline](https://github.com/DryZn/Portfolio_Backend_Django/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/DryZn/Portfolio_Backend_Django/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Backend Django REST API pour la gestion dynamique du contenu du portfolio.
+Django REST API backend for dynamic portfolio content management.
 
-## 🔗 Projets liés
+## 🔗 Related Projects
 
-- **Frontend**: [Portfolio](https://github.com/DryZn/portfolio) - Next.js 14 avec UI moderne
-- **Chatbot**: [AI Assistant Portfolio](https://github.com/DryZn/AI_Assistant_Portfolio) - FastAPI RAG avec LangChain
+- **Frontend**: [Portfolio](https://github.com/DryZn/portfolio) - Next.js 14 with modern UI
+- **Chatbot**: [AI Assistant Portfolio](https://github.com/DryZn/AI_Assistant_Portfolio) - FastAPI RAG with LangChain
 
 ## 🚀 Technologies
 
 - **Framework**: Django 5.0
 - **API**: Django REST Framework
-- **Base de données**: PostgreSQL / SQLite
+- **Database**: PostgreSQL / SQLite
 - **Documentation**: drf-spectacular (Swagger)
 - **DevOps**: Docker + GitHub Actions
 - **Testing**: Pytest
 
-## ✨ Fonctionnalités
+## ✨ Features
 
-### Interface Admin Django
-- 📊 Dashboard pour gérer tout le contenu
-- 📝 CRUD complet pour projets, compétences, expériences
-- ✍️ Système de blog avec catégories et tags
-- 📧 Gestion des messages de contact
-- 🖼️ Upload d'images et médias
+### Django Admin Interface
+- 📊 Dashboard to manage all content
+- 📝 Full CRUD for projects, skills, experiences
+- ✍️ Blog system with categories and tags
+- 📧 Contact message management
+- 🖼️ Image and media uploads
 
-### API REST
-- `GET /api/projects/` - Liste des projets
-- `GET /api/skills/` - Compétences techniques
-- `GET /api/experience/` - Expériences professionnelles
-- `GET /api/blog/posts/` - Articles de blog
-- `POST /api/contact/` - Formulaire de contact
-- `GET /api/docs/` - Documentation Swagger
+### REST API
+- `GET /api/projects/` - Project list
+- `GET /api/skills/` - Technical skills
+- `GET /api/experience/` - Professional experiences
+- `GET /api/blog/posts/` - Blog posts
+- `POST /api/contact/` - Contact form
+- `GET /api/docs/` - Swagger documentation
 
 ## 📦 Installation
 
-### Prérequis
+### Prerequisites
 - Python 3.11+
-- PostgreSQL (optionnel, SQLite par défaut)
+- PostgreSQL (optional, SQLite by default)
 
-### Installation locale
+### Local Installation
 
 ```bash
-# Cloner le repo
+# Clone repo
 git clone https://github.com/DryZn/Portfolio_Backend_Django.git
 cd Portfolio_Backend_Django
 
-# Créer environnement virtuel
+# Create virtual environment
 python -m venv venv
 
-# Activer (Windows)
+# Activate (Windows)
 venv\Scripts\activate
 
-# Activer (Linux/Mac)
+# Activate (Linux/Mac)
 source venv/bin/activate
 
-# Installer dépendances
+# Install dependencies
 pip install -r requirements.txt
 
-# Configurer variables d'environnement
+# Configure environment variables
 copy .env.example .env
 
-# Migrations
+# Run migrations
 python manage.py migrate
 
-# Créer superuser
+# Create superuser
 python manage.py createsuperuser
 
-# Lancer serveur
+# Start server
 python manage.py runserver
 ```
 
-Accéder à :
+Access:
 - API: http://localhost:8000/api/
 - Admin: http://localhost:8000/admin/
 - Docs: http://localhost:8000/api/docs/
@@ -82,20 +82,20 @@ Accéder à :
 ## 🐳 Docker
 
 ```bash
-# Avec Docker Compose (PostgreSQL inclus)
+# With Docker Compose (PostgreSQL included)
 docker-compose up -d
 
-# Créer superuser
+# Create superuser
 docker-compose exec web python manage.py createsuperuser
 
-# Build seul
+# Build only
 docker build -t portfolio-django .
 docker run -p 8000:8000 -e SECRET_KEY=your-key portfolio-django
 ```
 
 ## ⚙️ Configuration
 
-Variables d'environnement dans `.env` :
+Environment variables in `.env`:
 
 ```env
 SECRET_KEY=your-secret-key
@@ -109,19 +109,19 @@ CORS_ALLOWED_ORIGINS=http://localhost:3000
 
 ```
 Portfolio_Backend_Django/
-├── config/              # Configuration Django
+├── config/              # Django configuration
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
 ├── apps/
-│   ├── projects/        # Gestion des projets
-│   ├── skills/          # Compétences
-│   ├── experience/      # Expériences pro
-│   ├── blog/            # Blog technique
-│   └── contact/         # Messages de contact
-├── tests/               # Tests pytest
-├── media/               # Fichiers uploadés
-├── staticfiles/         # Fichiers statiques
+│   ├── projects/        # Project management
+│   ├── skills/          # Skills
+│   ├── experience/      # Professional experience
+│   ├── blog/            # Technical blog
+│   └── contact/         # Contact messages
+├── tests/               # Pytest tests
+├── media/               # Uploaded files
+├── staticfiles/         # Static files
 ├── Dockerfile
 ├── docker-compose.yml
 └── requirements.txt
@@ -130,107 +130,107 @@ Portfolio_Backend_Django/
 ## 🧪 Tests
 
 ```bash
-# Installer dépendances dev
+# Install dev dependencies
 pip install -r requirements-dev.txt
 
-# Lancer tests
+# Run tests
 pytest tests/ -v
 
-# Avec coverage
+# With coverage
 pytest tests/ --cov=apps
 
 # Linting
 black .
 flake8 .
 
-# Sécurité
+# Security
 bandit -r apps/ config/
 ```
 
-## 🚀 Déploiement
+## 🚀 Deployment
 
 ### Render
 
-1. Créer compte sur [Render](https://render.com)
-2. Nouveau Web Service
-3. Connecter repo GitHub
-4. Configuration :
+1. Create account on [Render](https://render.com)
+2. New Web Service
+3. Connect GitHub repo
+4. Configuration:
    - Build: `pip install -r requirements.txt`
    - Start: `gunicorn config.wsgi:application`
-5. Variables d'environnement :
+5. Environment variables:
    - `SECRET_KEY`
-   - `DATABASE_URL` (PostgreSQL Render)
+   - `DATABASE_URL` (Render PostgreSQL)
    - `ALLOWED_HOSTS`
 
 ### Railway
 
-1. Créer compte sur [Railway](https://railway.app)
+1. Create account on [Railway](https://railway.app)
 2. New Project → Deploy from GitHub
-3. Ajouter PostgreSQL
-4. Variables d'environnement automatiques
+3. Add PostgreSQL
+4. Automatic environment variables
 
-## 📊 Modèles de données
+## 📊 Data Models
 
 ### Project
-- Titre, description, technologies
-- URLs GitHub et démo
-- Image, statut, ordre
-- Compteur de vues
+- Title, description, technologies
+- GitHub and demo URLs
+- Image, status, order
+- View counter
 
 ### Skill
-- Nom, catégorie, niveau
-- Années d'expérience
-- Icône
+- Name, category, level
+- Years of experience
+- Icon
 
 ### Experience
-- Entreprise, poste, localisation
-- Dates début/fin
-- Description, réalisations
-- Technologies utilisées
+- Company, position, location
+- Start/end dates
+- Description, achievements
+- Technologies used
 
 ### Blog Post
-- Titre, contenu, extrait
-- Catégorie, tags
-- Image de couverture
-- Statut (brouillon/publié)
+- Title, content, excerpt
+- Category, tags
+- Cover image
+- Status (draft/published)
 
 ### Contact Message
-- Nom, email, sujet, message
-- Statut lu/répondu
+- Name, email, subject, message
+- Read/replied status
 
-## 🔐 Sécurité
+## 🔐 Security
 
-- CORS configuré pour frontend
-- CSRF protection activée
-- Permissions REST Framework
-- Admin protégé par authentification
-- Variables sensibles dans .env
+- CORS configured for frontend
+- CSRF protection enabled
+- REST Framework permissions
+- Admin protected by authentication
+- Sensitive variables in .env
 
-## 📝 Utilisation
+## 📝 Usage
 
-### Ajouter un projet via admin
+### Add a project via admin
 
-1. Aller sur `/admin/`
-2. Projets → Ajouter
-3. Remplir formulaire
-4. Sauvegarder
-5. Visible sur API `/api/projects/`
+1. Go to `/admin/`
+2. Projects → Add
+3. Fill form
+4. Save
+5. Visible on API `/api/projects/`
 
-### Écrire un article de blog
+### Write a blog post
 
-1. Admin → Blog → Articles
-2. Nouveau post
-3. Choisir catégorie et tags
-4. Statut "Publié"
+1. Admin → Blog → Posts
+2. New post
+3. Choose category and tags
+4. Status "Published"
 5. Accessible via `/api/blog/posts/`
 
-## 🤝 Contribution
+## 🤝 Contributing
 
-Les contributions sont bienvenues ! Ouvrez une issue ou PR.
+Contributions are welcome! Open an issue or PR.
 
-## 📄 Licence
+## 📄 License
 
-MIT License - voir [LICENSE](LICENSE)
+MIT License - see [LICENSE](LICENSE)
 
 ## 📧 Contact
 
