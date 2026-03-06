@@ -9,7 +9,7 @@ def api_client():
     return APIClient()
 
 
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db
 class TestProjectsAPI:
     def test_list_projects(self, api_client):
         url = reverse("project-list")
@@ -17,7 +17,7 @@ class TestProjectsAPI:
         assert response.status_code == status.HTTP_200_OK
 
 
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db
 class TestSkillsAPI:
     def test_list_skills(self, api_client):
         url = reverse("skill-list")
@@ -25,7 +25,7 @@ class TestSkillsAPI:
         assert response.status_code == status.HTTP_200_OK
 
 
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db
 class TestContactAPI:
     def test_send_message(self, api_client):
         url = reverse("contact")
